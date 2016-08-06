@@ -33,6 +33,7 @@
       background: #00CBFF
 
     .water
+      overflow: hidden
       position: absolute
       bottom: 0
       width: 100%
