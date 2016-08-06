@@ -8,7 +8,7 @@ Vue.use(Router);
 
 var router = new Router();
 router.map({
-  '/home': {
+  '/': {
     component: HomeView
   }
 });
@@ -18,7 +18,7 @@ router.beforeEach(function () {
 });
 
 router.redirect({
-  '*': '/home'
+  '*': '/'
 });
 
 router.start(App, '#app');
