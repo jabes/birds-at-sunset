@@ -8,3 +8,10 @@
     </router-view>
   </div>
 </template>
+
+<style lang="stylus">
+  html, body
+    margin 0
+    padding 0
+    transform none
+</style>

@@ -18,8 +18,7 @@ module.exports = {
     loaders: [
       {test: /\.vue$/, loader: 'vue'},
       {test: /\.js$/, loader: 'babel', exclude: [nodeModulesPath, distPath]},
-      {test: /\.css$/, loader: 'style!css!postcss'},
-      {test: /\.scss$/, loader: 'style!css!postcss!sass'}
+      {test: /\.styl$/, loader: 'style!css!stylus'}
     ]
   },
   plugins: [
@@ -29,18 +28,9 @@ module.exports = {
       }
     })
   ],
-  resolve: {
-    extensions: ['', '.js', '.scss'],
-    root: [srcPath]
-  },
   babel: {
     presets: ['es2015'],
     plugins: ['transform-runtime']
-  },
-  postcss: function () {
-    return [
-      require('autoprefixer')
-    ];
   },
   devServer: {
     host: 'localhost',
