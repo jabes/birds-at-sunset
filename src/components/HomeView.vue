@@ -49,12 +49,12 @@
       top: 0
       width: 100%
       height: 60%
-      background: #00CBFF
+      background: linear-gradient(to top, #E15AFF, #00CBFF)
 
       .cloud
         position: absolute
-        background: rgba(white, .5)
         border-radius: 999em 999em 0 0
+        background: linear-gradient(to bottom, rgba(white, .25), rgba(white, .85))
         animation: moveLeft 200s linear infinite
 
     .mountains
@@ -96,7 +96,7 @@
       bottom: 0
       width: 100%
       height: 40%
-      background: #008AFF
+      background: linear-gradient(to top, rgba(#008AFF, .6), #008AFF)
 
       .sparkle
         position: absolute
