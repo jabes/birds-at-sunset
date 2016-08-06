@@ -11,7 +11,6 @@
 
 <style lang="stylus">
   html, body
-    margin 0
-    padding 0
-    transform none
+    margin: 0
+    padding: 0
 </style>
