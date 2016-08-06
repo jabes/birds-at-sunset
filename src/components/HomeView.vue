@@ -1,15 +1,13 @@
 <template>
 
   <div class="landscape">
-    <div class="sky"></div>
-    <div class="mountains">
-      <div class="peak n1"></div>
-      <div class="peak n2"></div>
-      <div class="peak n3"></div>
-      <div class="peak n4"></div>
-      <div class="peak n5"></div>
+    <div class="sky">
+      <div v-sky-cloud v-for="n in 40" class="cloud"></div>
     </div>
-    <div id="waterContainer" class="water">
+    <div class="mountains">
+      <div v-for="n in 5" class="peak n{{n+1}}"></div>
+    </div>
+    <div class="water">
       <div v-water-sparkle v-for="n in 200" class="sparkle"></div>
     </div>
   </div>
@@ -26,6 +24,12 @@
     100%
       opacity: 0
 
+  @keyframes moveLeft
+    0%
+      transform: translateX(-0vw)
+    100%
+      transform: translateX(-200vw)
+
   triangle($width, $height, $color)
     width: 0
     height: 0
@@ -40,11 +44,18 @@
     position: relative
 
     .sky
+      overflow: hidden
       position: absolute
       top: 0
       width: 100%
       height: 60%
       background: #00CBFF
+
+      .cloud
+        position: absolute
+        background: rgba(white, .5)
+        border-radius: 999em 999em 0 0
+        animation: moveLeft 200s linear infinite
 
     .mountains
       position: absolute
@@ -98,9 +109,11 @@
 
 <script>
 
+  import SkyCloud from '../directives/SkyCloud.js';
   import WaterSparkle from '../directives/WaterSparkle.js';
   export default {
     directives: {
+      'sky-cloud': SkyCloud,
       'water-sparkle': WaterSparkle
     }
   };
