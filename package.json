@@ -31,9 +31,9 @@
   },
 
   "scripts": {
-    "start": "npm run server:prod",
+    "start": "npm run build && npm run server:prod",
     "server:dev": "webpack-dev-server --inline --hot",
-    "server:prod": "http-server --cors",
+    "server:prod": "http-server",
     "build": "webpack --progress --display-error-details",
     "watch": "webpack --watch"
   },
