@@ -1,0 +1,7 @@
+**/.*
+*.log
+!.gitignore
+!.editorconfig
+
+node_modules/
+dist/
