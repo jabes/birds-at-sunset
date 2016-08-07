@@ -1,18 +1,23 @@
 <template>
 
   <div class="landscape">
-    <div class="sky">
-      <div v-sky-cloud v-for="n in 25" class="cloud"></div>
+    <div class="sky backdrop">
+      <div v-sky-cloud size-multiplier="1" v-for="n in 20" class="cloud"></div>
     </div>
     <div class="mountains">
       <div v-for="n in 5" class="peak n{{n+1}}"></div>
     </div>
+    <div class="sky">
+      <div v-sky-cloud size-multiplier="2" v-for="n in 10" class="cloud"></div>
+    </div>
     <div class="birds">
       <div v-sky-bird v-for="n in 10" class="bird">
-        <div class="body2"></div>
-        <div class="body1"></div>
-        <div class="wing-l"></div>
-        <div class="wing-r"></div>
+        <div class="inner">
+          <div class="head"></div>
+          <div class="body"></div>
+          <div class="wing-l"></div>
+          <div class="wing-r"></div>
+        </div>
       </div>
     </div>
     <div class="water">
@@ -90,30 +95,33 @@
       height: 60%
 
     .sky
-      background: linear-gradient(to top, #E15AFF, #00CBFF)
+      &.backdrop
+        background: linear-gradient(to top, #E15AFF, #00CBFF)
       .cloud
         position: absolute
         border-radius: 999em 999em 0 0
         background: linear-gradient(to bottom, rgba(white, .25), rgba(white, .85))
-        animation: moveLeft 200s linear infinite
+        animation: moveLeft 0s linear infinite
 
     .birds
       .bird
         position: absolute
-        animation: moveRight 20s linear infinite, bob 0.7s infinite cubic-bezier(0.7, 0.7, 0.1, 0.4)
+        animation: moveRight 0s linear infinite
         div
           position: absolute
-        .body1, .body2, .wing-l, .wing-r
+        .inner
+          animation: bob 0.7s infinite cubic-bezier(0.7, 0.7, 0.1, 0.4)
+        .head, .body, .wing-l, .wing-r
           width: 0
           height: 0
           border-color: transparent
           border-style: solid
-        .body1
+        .head
           border-width: 15px
           border-left-width: 25px
           border-right-width: 55px
           border-top-color: #333
-        .body2
+        .body
           left: 50px
           bottom: 0
           border-width: 10px
