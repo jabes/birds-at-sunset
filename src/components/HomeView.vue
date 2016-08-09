@@ -1,22 +1,24 @@
 <template>
 
   <div class="landscape">
-    <div class="sky backdrop">
-      <div v-sky-cloud size-multiplier="1" v-for="n in 20" class="cloud"></div>
-    </div>
-    <div class="mountains">
-      <div v-for="n in 5" class="peak n{{n+1}}"></div>
-    </div>
     <div class="sky">
-      <div v-sky-cloud size-multiplier="2" v-for="n in 10" class="cloud"></div>
-    </div>
-    <div class="birds">
-      <div v-sky-bird v-for="n in 10" class="bird">
-        <div class="inner">
-          <div class="head"></div>
-          <div class="body"></div>
-          <div class="wing-l"></div>
-          <div class="wing-r"></div>
+      <div class="clouds">
+        <div v-sky-cloud size-multiplier="1" v-for="n in 20" class="cloud"></div>
+      </div>
+      <div class="mountains">
+        <div v-for="n in 5" class="mountain n{{n+1}}"></div>
+      </div>
+      <div class="clouds">
+        <div v-sky-cloud size-multiplier="2" v-for="n in 2" class="cloud"></div>
+      </div>
+      <div class="birds">
+        <div v-sky-bird v-for="n in 10" class="bird">
+          <div class="inner">
+            <div class="body"></div>
+            <div class="head"></div>
+            <div class="wing-l"></div>
+            <div class="wing-r"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -39,15 +41,15 @@
 
   @keyframes moveLeft
     0%
-      transform: translateX(-0vw)
+      transform: translateX(calc(-0vw - 0%))
     100%
-      transform: translateX(-200vw)
+      transform: translateX(calc(-200vw - 100%))
 
   @keyframes moveRight
     0%
-      transform: translateX(-200vw)
+      transform: translateX(0vw)
     100%
-      transform: translateX(-0vw)
+      transform: translateX(200vw)
 
   @keyframes flap-r
     0%, 10%
@@ -86,17 +88,30 @@
     background: black
     position: relative
 
-    .sky,
-    .birds
+    .sky
+      overflow: hidden
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 60%
+      background: linear-gradient(to top, #E15AFF, #00CBFF)
+
+    .clouds,
+    .birds,
+    .mountains
       overflow: hidden
       position: absolute
       top: 0
       width: 100%
-      height: 60%
+      height: 100%
 
-    .sky
-      &.backdrop
-        background: linear-gradient(to top, #E15AFF, #00CBFF)
+    .clouds,
+    .birds
+      width: 200%
+
+    .clouds
+      left: 0
       .cloud
         position: absolute
         border-radius: 999em 999em 0 0
@@ -104,24 +119,25 @@
         animation: moveLeft 0s linear infinite
 
     .birds
+      right: 0
       .bird
         position: absolute
-        animation: moveRight 0s linear infinite
+        animation: moveRight 0s infinite linear
         div
           position: absolute
         .inner
-          animation: bob 0.7s infinite cubic-bezier(0.7, 0.7, 0.1, 0.4)
+          animation: bob 0.7s infinite ease-in-out
         .head, .body, .wing-l, .wing-r
           width: 0
           height: 0
           border-color: transparent
           border-style: solid
-        .head
+        .body
           border-width: 15px
           border-left-width: 25px
           border-right-width: 55px
           border-top-color: #333
-        .body
+        .head
           left: 50px
           bottom: 0
           border-width: 10px
@@ -137,7 +153,7 @@
           border-top-width: 0
           border-right-width: 6px
           border-bottom-color: #444
-          animation: flap-l 0.7s infinite
+          animation: flap-l 0.7s infinite ease-in-out
         .wing-r
           left: 22px
           top: 0
@@ -146,15 +162,10 @@
           border-bottom-width: 0
           border-right-width: 6px
           border-top-color: #777
-          animation: flap-r 0.7s infinite
+          animation: flap-r 0.7s infinite ease-in-out
 
     .mountains
-      position: absolute
-      bottom: 40%
-      width: 100%
-      height: 0
-
-      .peak
+      .mountain
         $color = #65A82F
         position: absolute
         bottom: 0
@@ -179,6 +190,7 @@
       overflow: hidden
       position: absolute
       bottom: 0
+      left: 0
       width: 100%
       height: 40%
       background: linear-gradient(to top, rgba(#008AFF, .6), #008AFF)
